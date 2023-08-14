@@ -3,12 +3,17 @@ package dianaszczepankowska;
 import dianaszczepankowska.activationfunction.ReLu;
 import dianaszczepankowska.dataloader.Loader;
 import dianaszczepankowska.dataloader.model.Image;
+import dianaszczepankowska.driver.InputHandler;
 import dianaszczepankowska.layer.PoolingType;
 import dianaszczepankowska.network.CnnModelBuilder;
 import dianaszczepankowska.network.CnnNetwork;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import static java.util.Collections.shuffle;
 import java.util.List;
+
 
 public class Main {
     public static final String TRAIN_IMAGES_PATH = "src/main/java/dianaszczepankowska/dataloader/mnist_data/train-images-idx3-ubyte";
@@ -18,6 +23,11 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
+
+        PrintWriter fileOut = new PrintWriter(new BufferedWriter(new FileWriter("results.txt", true)));
+        InputHandler inputHandler = new InputHandler();
+
+
         System.out.println("Pobieranie danych...");
 
         List<Image> imagesTrain = Loader.loadMnistImages(TRAIN_IMAGES_PATH, TRAIN_LABELS_PATH);
@@ -29,30 +39,47 @@ public class Main {
         System.out.println("Liczba danych treningowych: " + imagesTrain.size());
         System.out.println("Liczba danych testowych: " + imagesTest.size());
 
+
         try {
+
             CnnModelBuilder builder = new CnnModelBuilder()
-                    .addConvolutionLayer(30, 5, 1, 0.15, SEED)
-                    .addPoolingLayer(3, 2, PoolingType.MAX)
-                    .addDenseLayer(128, 0.15, new ReLu(), SEED)
-                    .addDenseLayer(10, 0.15, new ReLu(), SEED);
+                    .addConvolutionLayer(25, 5, 1, 0.2, true, SEED)
+                    .addPoolingLayer(3, 1, PoolingType.MAX)
+                    .addDenseLayer(150, 0.2, new ReLu(), SEED)
+                    .addDenseLayer(10, 0.2, new ReLu(), SEED)
+                    .addSoftMaxLayer(10);
 
             CnnNetwork cnn = builder.build();
 
-            double rate = cnn.test(imagesTest);
-            System.out.println("Współczynnik sukcesu przed treningiem: " + rate);
+            double initialRate = cnn.test(imagesTest);
+            fileOut.println("WSPOLCZYNNIK SUKCESU PRZED TRENINGIEM: " + initialRate);
+            System.out.println("Współczynnik sukcesu przed treningiem: " + initialRate);
+
+            String networkSettings = builder.toString();
+            fileOut.println("USTAWIENIA SIECI: " + networkSettings);
 
             int epochs = 30;
 
             for (int i = 0; i < epochs; i++) {
                 shuffle(imagesTrain);
                 cnn.train(imagesTrain);
-                rate = cnn.test(imagesTest);
+                double rate = cnn.test(imagesTest);
                 System.out.println("Współczynnik sukcesu po rundzie " + i + ": " + rate);
+
+                fileOut.println("WSPOLCZYNNIK SUKCESU PO RUNDZIE " + i + ": " + rate);
+                fileOut.flush();
             }
+            fileOut.println();
+
+            inputHandler.getUserInputImage(cnn);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        fileOut.close();
+
     }
+
 
 }
