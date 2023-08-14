@@ -1,12 +1,12 @@
 package dianaszczepankowska;
 
-import dianaszczepankowska.activationfunction.ReLu;
-import dianaszczepankowska.dataloader.Loader;
-import dianaszczepankowska.dataloader.model.Image;
+import dianaszczepankowska.problem.model.Image;
+import dianaszczepankowska.method.activationfunction.ReLu;
+import dianaszczepankowska.problem.Loader;
 import dianaszczepankowska.driver.InputHandler;
-import dianaszczepankowska.layer.PoolingType;
-import dianaszczepankowska.network.CnnModelBuilder;
-import dianaszczepankowska.network.CnnNetwork;
+import dianaszczepankowska.method.layer.PoolingType;
+import dianaszczepankowska.method.network.CnnModelBuilder;
+import dianaszczepankowska.method.network.CnnNetwork;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,10 +16,10 @@ import java.util.List;
 
 
 public class Main {
-    public static final String TRAIN_IMAGES_PATH = "src/main/java/dianaszczepankowska/dataloader/mnist_data/train-images-idx3-ubyte";
-    public static final String TRAIN_LABELS_PATH = "src/main/java/dianaszczepankowska/dataloader/mnist_data/train-labels-idx1-ubyte";
-    public static final String TEST_IMAGES_PATH = "src/main/java/dianaszczepankowska/dataloader/mnist_data/t10k-images-idx3-ubyte";
-    public static final String TEST_LABELS_PATH = "src/main/java/dianaszczepankowska/dataloader/mnist_data/t10k-labels-idx1-ubyte";
+    public static final String TRAIN_IMAGES_PATH = "src/main/java/dianaszczepankowska/problem/mnist_data/train-images-idx3-ubyte";
+    public static final String TRAIN_LABELS_PATH = "src/main/java/dianaszczepankowska/problem/mnist_data/train-labels-idx1-ubyte";
+    public static final String TEST_IMAGES_PATH = "src/main/java/dianaszczepankowska/problem/mnist_data/t10k-images-idx3-ubyte";
+    public static final String TEST_LABELS_PATH = "src/main/java/dianaszczepankowska/problem/mnist_data/t10k-labels-idx1-ubyte";
 
 
     public static void main(String[] args) throws IOException {

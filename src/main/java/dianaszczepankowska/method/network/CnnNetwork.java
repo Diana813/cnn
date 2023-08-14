@@ -1,9 +1,9 @@
-package dianaszczepankowska.network;
+package dianaszczepankowska.method.network;
 
-import dianaszczepankowska.dataloader.model.Image;
-import dianaszczepankowska.layer.Layer;
-import static dianaszczepankowska.tools.Matrix.add;
-import static dianaszczepankowska.tools.Matrix.multiply;
+import dianaszczepankowska.problem.model.Image;
+import dianaszczepankowska.method.layer.Layer;
+import static dianaszczepankowska.method.tools.Matrix.add;
+import static dianaszczepankowska.method.tools.Matrix.multiply;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

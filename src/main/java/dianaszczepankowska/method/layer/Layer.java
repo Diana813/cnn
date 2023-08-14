@@ -1,4 +1,4 @@
-package dianaszczepankowska.layer;
+package dianaszczepankowska.method.layer;
 
 import java.util.List;
 

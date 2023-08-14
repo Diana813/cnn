@@ -1,8 +1,8 @@
-package dianaszczepankowska.layer;
+package dianaszczepankowska.method.layer;
 
-import dianaszczepankowska.activationfunction.ActivationFunction;
-import dianaszczepankowska.activationfunction.SoftMax;
-import dianaszczepankowska.tools.Matrix;
+import dianaszczepankowska.method.activationfunction.ActivationFunction;
+import dianaszczepankowska.method.activationfunction.SoftMax;
+import dianaszczepankowska.method.tools.Matrix;
 import java.util.Collections;
 import java.util.List;
 
@@ -74,5 +74,10 @@ public class SoftmaxLayer implements Layer{
     @Override
     public void setPreviousLayer(Layer layer) {
         this.previousLayer = layer;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

@@ -1,7 +1,7 @@
-package dianaszczepankowska.layer;
+package dianaszczepankowska.method.layer;
 
-import static dianaszczepankowska.tools.Matrix.averagePooling;
-import static dianaszczepankowska.tools.Matrix.maxPooling;
+import static dianaszczepankowska.method.tools.Matrix.averagePooling;
+import static dianaszczepankowska.method.tools.Matrix.maxPooling;
 import java.util.List;
 
 public enum PoolingType {

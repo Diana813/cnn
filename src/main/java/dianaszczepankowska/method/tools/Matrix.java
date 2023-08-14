@@ -1,4 +1,4 @@
-package dianaszczepankowska.tools;
+package dianaszczepankowska.method.tools;
 
 import java.util.ArrayList;
 import java.util.Arrays;

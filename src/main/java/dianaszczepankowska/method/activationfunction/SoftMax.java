@@ -1,4 +1,4 @@
-package dianaszczepankowska.activationfunction;
+package dianaszczepankowska.method.activationfunction;
 
 public class SoftMax implements ActivationFunction {
     @Override

@@ -1,7 +1,7 @@
-package dianaszczepankowska.layer;
+package dianaszczepankowska.method.layer;
 
-import dianaszczepankowska.activationfunction.ActivationFunction;
-import static dianaszczepankowska.tools.Matrix.matrixToVector;
+import dianaszczepankowska.method.activationfunction.ActivationFunction;
+import static dianaszczepankowska.method.tools.Matrix.matrixToVector;
 import java.util.List;
 import java.util.Random;
 

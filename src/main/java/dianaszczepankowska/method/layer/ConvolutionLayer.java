@@ -1,15 +1,15 @@
-package dianaszczepankowska.layer;
+package dianaszczepankowska.method.layer;
 
-import dianaszczepankowska.activationfunction.ActivationFunction;
-import dianaszczepankowska.activationfunction.ReLu;
-import dianaszczepankowska.tools.Matrix;
-import static dianaszczepankowska.tools.Matrix.add;
-import static dianaszczepankowska.tools.Matrix.convolve;
-import static dianaszczepankowska.tools.Matrix.flipHorizontal;
-import static dianaszczepankowska.tools.Matrix.flipVertical;
-import static dianaszczepankowska.tools.Matrix.fullConvolve;
-import static dianaszczepankowska.tools.Matrix.expandArray;
-import static dianaszczepankowska.tools.Matrix.vectorToMatrix;
+import dianaszczepankowska.method.activationfunction.ActivationFunction;
+import dianaszczepankowska.method.activationfunction.ReLu;
+import dianaszczepankowska.method.tools.Matrix;
+import static dianaszczepankowska.method.tools.Matrix.add;
+import static dianaszczepankowska.method.tools.Matrix.convolve;
+import static dianaszczepankowska.method.tools.Matrix.flipHorizontal;
+import static dianaszczepankowska.method.tools.Matrix.flipVertical;
+import static dianaszczepankowska.method.tools.Matrix.fullConvolve;
+import static dianaszczepankowska.method.tools.Matrix.expandArray;
+import static dianaszczepankowska.method.tools.Matrix.vectorToMatrix;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

@@ -1,6 +1,6 @@
-package dianaszczepankowska.dataloader;
+package dianaszczepankowska.problem;
 
-import dianaszczepankowska.dataloader.model.Image;
+import dianaszczepankowska.problem.model.Image;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;

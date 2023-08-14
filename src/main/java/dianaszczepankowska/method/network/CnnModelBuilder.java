@@ -1,12 +1,12 @@
-package dianaszczepankowska.network;
+package dianaszczepankowska.method.network;
 
-import dianaszczepankowska.activationfunction.ActivationFunction;
-import dianaszczepankowska.layer.ConvolutionLayer;
-import dianaszczepankowska.layer.DenseLayer;
-import dianaszczepankowska.layer.Layer;
-import dianaszczepankowska.layer.PoolingLayer;
-import dianaszczepankowska.layer.PoolingType;
-import dianaszczepankowska.layer.SoftmaxLayer;
+import dianaszczepankowska.method.activationfunction.ActivationFunction;
+import dianaszczepankowska.method.layer.ConvolutionLayer;
+import dianaszczepankowska.method.layer.DenseLayer;
+import dianaszczepankowska.method.layer.Layer;
+import dianaszczepankowska.method.layer.PoolingLayer;
+import dianaszczepankowska.method.layer.PoolingType;
+import dianaszczepankowska.method.layer.SoftmaxLayer;
 import java.util.ArrayList;
 import java.util.List;
 

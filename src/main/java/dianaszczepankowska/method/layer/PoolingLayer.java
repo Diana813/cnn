@@ -1,6 +1,6 @@
-package dianaszczepankowska.layer;
+package dianaszczepankowska.method.layer;
 
-import static dianaszczepankowska.tools.Matrix.vectorToMatrix;
+import static dianaszczepankowska.method.tools.Matrix.vectorToMatrix;
 import java.util.ArrayList;
 import java.util.List;
 

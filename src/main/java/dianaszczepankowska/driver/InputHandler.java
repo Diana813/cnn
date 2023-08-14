@@ -1,9 +1,9 @@
 package dianaszczepankowska.driver;
 
-import static dianaszczepankowska.dataloader.ImagePreprocessor.processImagesFromFiles;
-import dianaszczepankowska.dataloader.model.ClothingCategory;
-import dianaszczepankowska.dataloader.model.Image;
-import dianaszczepankowska.network.CnnNetwork;
+import static dianaszczepankowska.problem.ImagePreprocessor.processImagesFromFiles;
+import dianaszczepankowska.problem.model.Image;
+import dianaszczepankowska.problem.model.ClothingCategory;
+import dianaszczepankowska.method.network.CnnNetwork;
 import java.io.File;
 import java.util.List;
 import java.util.Scanner;

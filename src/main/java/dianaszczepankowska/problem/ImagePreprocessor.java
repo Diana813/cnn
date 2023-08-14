@@ -1,6 +1,6 @@
-package dianaszczepankowska.dataloader;
+package dianaszczepankowska.problem;
 
-import dianaszczepankowska.dataloader.model.Image;
+import dianaszczepankowska.problem.model.Image;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
