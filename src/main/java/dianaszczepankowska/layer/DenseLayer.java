@@ -53,7 +53,6 @@ public class DenseLayer implements Layer {
     @Override
     public void backPropagation(double[] dLdO) {
         double[] dLdX = new double[inputLength];
-        double dOdZ;
         double dZdW;
         double dLdW;
         double dZdX;
@@ -62,13 +61,14 @@ public class DenseLayer implements Layer {
         for (int i = 0; i < inputLength; i++) {
             double dLdX_sum = 0;
 
+            double[] derivatives = activationFunction.derivative(lastZ);
+
             for (int j = 0; j < outputLength; j++) {
-                dOdZ = activationFunction.derivative(lastZ[j]);
                 dZdW = lastX[i];
-                dLdW = dLdO[j] * dOdZ * dZdW;
+                dLdW = dLdO[j] * derivatives[j] * dZdW;
                 dZdX = weights[i][j];
                 weights[i][j] -= dLdW * learningRate;
-                dLdX_sum = dLdO[j] * dOdZ * dZdX;
+                dLdX_sum = dLdO[j] * derivatives[j] * dZdX;
             }
 
             dLdX[i] = dLdX_sum;
@@ -121,15 +121,21 @@ public class DenseLayer implements Layer {
     public double[] forwardPass(double[] input) {
         lastX = input;
         double[] z = new double[outputLength];
-        double[] out = new double[outputLength];
 
         for (int j = 0; j < outputLength; j++) {
             for (int i = 0; i < inputLength; i++) {
                 z[j] += input[i] * weights[i][j];
             }
-            out[j] = activationFunction.apply(z[j]);
         }
         lastZ = z;
-        return out;
+        return activationFunction.apply(z);
+    }
+
+    @Override
+    public String toString() {
+        return "DenseLayer{" +
+                "number of neurons: " + outputLength +
+                ", learning rate: " + learningRate +
+                '}';
     }
 }

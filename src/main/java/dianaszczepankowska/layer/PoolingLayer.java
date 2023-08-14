@@ -108,4 +108,13 @@ public class PoolingLayer implements Layer {
         return output;
     }
 
+    @Override
+    public String toString() {
+        return "PoolingLayer{" +
+                "filterSize: " + kernelSize +
+                ", stepSize: " + stepSize +
+                ", pooling type: " + type.name() +
+                '}';
+    }
+
 }

@@ -5,43 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e9165b4-c8d6-4072-a352-ef14ee3fecba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/activationfunction/ActivationFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/activationfunction/ReLu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/dataloader/Loader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/dataloader/model/Image.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/dataloader/model/Pair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/layer/ConvolutionLayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/layer/DenseLayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/layer/Layer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/layer/PoolingLayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/layer/PoolingType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/network/CnnModelBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/network/CnnNetwork.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cnn_network/src/main/java/dianaszczepankowska/tools/Matrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/activationfunction/SoftMax.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/dataloader/ImagePreprocessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/dataloader/model/ClothingCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/driver/InputHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/SoftmaxLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/activationfunction/ActivationFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/activationfunction/ActivationFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/dataloader/model/Pair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/ConvolutionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/ConvolutionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/DenseLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/DenseLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/PoolingLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/PoolingLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/network/CnnModelBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/network/CnnModelBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/network/CnnNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/network/CnnNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/tools/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/tools/Matrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +32,19 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2QiGAoBu5OJlz28VkBWhbgrkmmx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -64,13 +54,36 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "last_opened_file_path": "C:/Users/diana/IdeaProjects/cnn"
+    "last_opened_file_path": "C:/Users/diana/IdeaProjects/cnn",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\diana\IdeaProjects\cnn" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dianaszczepankowska.Main" />
+      <module name="cnn.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dianaszczepankowska.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -93,5 +106,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="derivatives" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -5,14 +5,15 @@ import dianaszczepankowska.layer.Layer;
 import static dianaszczepankowska.tools.Matrix.add;
 import static dianaszczepankowska.tools.Matrix.multiply;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class CnnNetwork {
     List<Layer> layers;
 
-    public CnnNetwork(List<Layer> _layers) {
-        this.layers = _layers;
+    public CnnNetwork(List<Layer> layers) {
+        this.layers = layers;
         connectLayers();
     }
 
@@ -76,6 +77,10 @@ public class CnnNetwork {
         return IntStream.range(0, in.length)
                 .reduce((i, j) -> in[i] >= in[j] ? i : j)
                 .orElse(0);
+    }
+
+    public double[] predictProbabilities(Image images) {
+        return layers.get(0).forwardPropagation(Collections.singletonList(images.pixels()));
     }
 
 }

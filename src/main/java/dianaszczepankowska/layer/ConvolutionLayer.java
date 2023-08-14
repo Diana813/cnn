@@ -1,11 +1,13 @@
 package dianaszczepankowska.layer;
 
+import dianaszczepankowska.activationfunction.ActivationFunction;
+import dianaszczepankowska.activationfunction.ReLu;
+import dianaszczepankowska.tools.Matrix;
 import static dianaszczepankowska.tools.Matrix.add;
 import static dianaszczepankowska.tools.Matrix.convolve;
 import static dianaszczepankowska.tools.Matrix.flipHorizontal;
 import static dianaszczepankowska.tools.Matrix.flipVertical;
 import static dianaszczepankowska.tools.Matrix.fullConvolve;
-import static dianaszczepankowska.tools.Matrix.multiply;
 import static dianaszczepankowska.tools.Matrix.expandArray;
 import static dianaszczepankowska.tools.Matrix.vectorToMatrix;
 import java.util.ArrayList;
@@ -25,7 +27,13 @@ public final class ConvolutionLayer implements Layer {
     private final double learningRate;
     private List<double[][]> lastInput;
 
-    public ConvolutionLayer(int filterSize, int stepSize, int inputLength, int inputRows, int inputCols, int numberOfFilters, double learningRate, long seed) {
+    private final ActivationFunction activationFunction;
+
+    private final boolean padding;
+
+    private final int numberOfFilters;
+
+    public ConvolutionLayer(int filterSize, int stepSize, int inputLength, int inputRows, int inputCols, int numberOfFilters, double learningRate, long seed, boolean padding) {
         this.filterSize = filterSize;
         this.stepSize = stepSize;
         this.inputLength = inputLength;
@@ -33,6 +41,9 @@ public final class ConvolutionLayer implements Layer {
         this.inputCols = inputCols;
         this.seed = seed;
         this.learningRate = learningRate;
+        this.activationFunction = new ReLu();
+        this.padding = padding;
+        this.numberOfFilters = numberOfFilters;
         generateRandomFilters(numberOfFilters);
     }
 
@@ -65,15 +76,16 @@ public final class ConvolutionLayer implements Layer {
                 double[][] error = dLdO.get(i * filters.size() + f);
 
                 double[][] spacedError = expandArray(error, stepSize);
-                double[][] dLdF = convolve(lastInput.get(i), spacedError, 1);
+                double[][] dLdF = convolve(lastInput.get(i), spacedError, 1, padding);
 
-                double[][] delta = multiply(dLdF, learningRate * -1);
+                double[][] delta = Matrix.multiply(dLdF, learningRate * -1);
                 double[][] newTotalDelta = add(filtersDelta.get(f), delta);
 
                 filtersDelta.set(f, newTotalDelta);
 
                 double[][] flippedError = flipHorizontal(flipVertical(spacedError));
                 errorForInput = add(errorForInput, fullConvolve(currentFilter, flippedError));
+                errorForInput = Matrix.multiply(errorForInput, activationFunction.derivative(lastInput.get(i)));
 
             }
 
@@ -95,6 +107,7 @@ public final class ConvolutionLayer implements Layer {
         List<double[][]> matrixInput = vectorToMatrix(dLdO, inputLength, inputRows, inputCols);
         backPropagation(matrixInput);
     }
+
 
     @Override
     public int getOutputLength() {
@@ -129,7 +142,11 @@ public final class ConvolutionLayer implements Layer {
     private List<double[][]> forward(List<double[][]> input) {
         lastInput = input;
         List<double[][]> output = new ArrayList<>();
-        input.forEach(in -> filters.forEach(filter -> output.add(convolve(in, filter, stepSize))));
+        input.forEach(in -> filters.forEach(filter -> {
+            double[][] convolved = convolve(in, filter, stepSize, padding);
+            double[][] activated = activationFunction.apply(convolved);
+            output.add(activated);
+        }));
         return output;
     }
 
@@ -147,6 +164,17 @@ public final class ConvolutionLayer implements Layer {
             filters.add(filter);
         }
         this.filters = filters;
+    }
+
+    @Override
+    public String toString() {
+        return "ConvolutionLayer{" +
+                "filterSize: " + filterSize +
+                ", stepSize: " + stepSize +
+                ", numFilters: " + numberOfFilters +
+                ", learning rate: " + learningRate +
+                ", padding: " + padding +
+                '}';
     }
 
 }

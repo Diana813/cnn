@@ -6,6 +6,7 @@ import dianaszczepankowska.layer.DenseLayer;
 import dianaszczepankowska.layer.Layer;
 import dianaszczepankowska.layer.PoolingLayer;
 import dianaszczepankowska.layer.PoolingType;
+import dianaszczepankowska.layer.SoftmaxLayer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +21,12 @@ public class CnnModelBuilder {
     }
 
 
-    public CnnModelBuilder addConvolutionLayer(int numFilters, int filterSize, int stepSize, double learningRate, long seed) {
+    public CnnModelBuilder addConvolutionLayer(int numFilters, int filterSize, int stepSize, double learningRate, boolean padding, long seed) {
         if (layers.isEmpty()) {
-            addLayer(new ConvolutionLayer(filterSize, stepSize, 1, IMAGE_HEIGHT, IMAGE_WIDTH, numFilters, learningRate, seed));
+            addLayer(new ConvolutionLayer(filterSize, stepSize, 1, IMAGE_HEIGHT, IMAGE_WIDTH, numFilters, learningRate, seed, padding));
         } else {
             Layer previous = layers.get(layers.size() - 1);
-            addLayer(new ConvolutionLayer(filterSize, stepSize, previous.getOutputLength(), previous.getOutputRows(), previous.getOutputCols(), numFilters, learningRate, seed));
+            addLayer(new ConvolutionLayer(filterSize, stepSize, previous.getOutputLength(), previous.getOutputRows(), previous.getOutputCols(), numFilters, learningRate, seed, padding));
         }
         return this;
     }
@@ -50,8 +51,22 @@ public class CnnModelBuilder {
         return this;
     }
 
+    public CnnModelBuilder addSoftMaxLayer(int outLength) {
+            addLayer(new SoftmaxLayer(outLength));
+
+        return this;
+    }
+
     public CnnNetwork build() {
         return new CnnNetwork(layers);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Layer layer : layers) {
+            builder.append(layer.toString()).append("\n");
+        }
+        return builder.toString();
+    }
 }

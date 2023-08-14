@@ -36,15 +36,23 @@ public class Matrix {
                 .toArray();
     }
 
-    public static double[][] convolve(double[][] input, double[][] filter, int stepSize) {
-        int outRows = (input.length - filter.length) / stepSize + 1;
-        int outCols = (input[0].length - filter[0].length) / stepSize + 1;
+    public static double[][] convolve(double[][] input, double[][] filter, int stepSize, boolean padding) {
+        int outRows;
+        int outCols;
 
         int inRows = input.length;
         int inCols = input[0].length;
 
         int fRows = filter.length;
         int fCols = filter[0].length;
+
+        if (padding) {
+            outRows = (inRows + 2 * (fRows - 1) - fRows) / stepSize + 1;
+            outCols = (inCols + 2 * (fCols - 1) - fCols) / stepSize + 1;
+        } else {
+            outRows = (inRows - fRows) / stepSize + 1;
+            outCols = (inCols - fCols) / stepSize + 1;
+        }
 
         double[][] output = new double[outRows][outCols];
 
@@ -208,6 +216,7 @@ public class Matrix {
         return out;
     }
 
+
     public static double[][] maxPooling(int kernelSize, int stepSize, double[][] input, int outputRows, int outputCols, List<int[][]> lastPooledRows, List<int[][]> lastPooledCols) {
         double[][] output = new double[outputRows][outputCols];
 
@@ -275,4 +284,117 @@ public class Matrix {
         return output;
     }
 
+    public static double[][] multiply(double[][] matrixA, double[][] matrixB) {
+        int rowsA = matrixA.length;
+        int colsA = matrixA[0].length;
+        int rowsB = matrixB.length;
+        int colsB = matrixB[0].length;
+
+        if (colsA != colsB || rowsA != rowsB) {
+            throw new IllegalArgumentException("Matrix dimensions do not match for element-wise multiplication.");
+        }
+
+        double[][] result = new double[rowsA][colsA];
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsA; j++) {
+                result[i][j] = matrixA[i][j] * matrixB[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    public static double[][] dotProduct(double[][] matrixA, double[][] matrixB) {
+        int rowsA = matrixA.length;
+        int colsA = matrixA[0].length;
+        int rowsB = matrixB.length;
+        int colsB = matrixB[0].length;
+
+        if (colsA != rowsB) {
+            throw new IllegalArgumentException("Matrix dimensions do not match for matrix multiplication.");
+        }
+
+        double[][] result = new double[rowsA][colsB];
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsB; j++) {
+                for (int k = 0; k < colsA; k++) {
+                    result[i][j] += matrixA[i][k] * matrixB[k][j];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static double[][] tileArray(double[] array, int rows) {
+        int columns = array.length;
+        double[][] tiledMatrix = new double[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            System.arraycopy(array, 0, tiledMatrix[i], 0, columns);
+        }
+
+        return tiledMatrix;
+    }
+
+    public static double[][] identity(int size) {
+        double[][] identity = new double[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                identity[i][j] = (i == j) ? 1.0 : 0.0;
+            }
+        }
+
+        return identity;
+    }
+
+
+    public static double[][] transpose(double[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        double[][] transpose = new double[cols][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                transpose[j][i] = matrix[i][j];
+            }
+        }
+
+        return transpose;
+    }
+
+
+    public static double[][] subtract(double[][] matrixA, double[][] matrixB) {
+        int rowsA = matrixA.length;
+        int colsA = matrixA[0].length;
+        int rowsB = matrixB.length;
+        int colsB = matrixB[0].length;
+
+        if (rowsA != rowsB || colsA != colsB) {
+            throw new IllegalArgumentException("Matrix dimensions do not match for subtraction.");
+        }
+
+        double[][] result = new double[rowsA][colsA];
+
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsA; j++) {
+                result[i][j] = matrixA[i][j] - matrixB[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    public static double[][] arrayToColumnMatrix(double[] array) {
+        int rows = array.length;
+        double[][] columnMatrix = new double[rows][1];
+
+        for (int i = 0; i < rows; i++) {
+            columnMatrix[i][0] = array[i];
+        }
+
+        return columnMatrix;
+    }
 }
