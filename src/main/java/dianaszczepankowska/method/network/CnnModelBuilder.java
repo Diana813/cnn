@@ -20,39 +20,42 @@ public class CnnModelBuilder {
         layers.add(layer);
     }
 
+    public CnnModelBuilder addConvolutionLayer(int numFilters, int filterSize, int stepSize,
+                                               double learningRate, boolean padding, long seed) {
+        Layer previous = getPreviousLayer();
+        int outputLength = previous == null ? 1 : previous.getOutputLength();
+        int outputRows = previous == null ? IMAGE_HEIGHT : previous.getOutputRows();
+        int outputCols = previous == null ? IMAGE_WIDTH : previous.getOutputCols();
 
-    public CnnModelBuilder addConvolutionLayer(int numFilters, int filterSize, int stepSize, double learningRate, boolean padding, long seed) {
-        if (layers.isEmpty()) {
-            addLayer(new ConvolutionLayer(filterSize, stepSize, 1, IMAGE_HEIGHT, IMAGE_WIDTH, numFilters, learningRate, seed, padding));
-        } else {
-            Layer previous = layers.get(layers.size() - 1);
-            addLayer(new ConvolutionLayer(filterSize, stepSize, previous.getOutputLength(), previous.getOutputRows(), previous.getOutputCols(), numFilters, learningRate, seed, padding));
-        }
+        addLayer(new ConvolutionLayer(filterSize, stepSize, outputLength, outputRows, outputCols,
+                numFilters, learningRate, seed, padding));
+
         return this;
     }
 
     public CnnModelBuilder addPoolingLayer(int kernelSize, int stepSize, PoolingType type) {
-        if (layers.isEmpty()) {
-            addLayer(new PoolingLayer(stepSize, kernelSize, 1, IMAGE_HEIGHT, IMAGE_WIDTH, type));
-        } else {
-            Layer previous = layers.get(layers.size() - 1);
-            addLayer(new PoolingLayer(stepSize, kernelSize, previous.getOutputLength(), previous.getOutputRows(), previous.getOutputCols(), type));
-        }
+        Layer previous = getPreviousLayer();
+        int outputLength = previous == null ? 1 : previous.getOutputLength();
+        int outputRows = previous == null ? IMAGE_HEIGHT : previous.getOutputRows();
+        int outputCols = previous == null ? IMAGE_WIDTH : previous.getOutputCols();
+
+        addLayer(new PoolingLayer(stepSize, kernelSize, outputLength, outputRows, outputCols, type));
+
         return this;
     }
 
-    public CnnModelBuilder addDenseLayer(int outLength, double learningRate, ActivationFunction activationFunction, long seed) {
-        if (layers.isEmpty()) {
-            addLayer(new DenseLayer(IMAGE_HEIGHT * IMAGE_WIDTH, outLength, learningRate, activationFunction, seed));
-        } else {
-            Layer previous = layers.get(layers.size() - 1);
-            addLayer(new DenseLayer(previous.getOutputElements(), outLength, learningRate, activationFunction, seed));
-        }
+    public CnnModelBuilder addDenseLayer(int outLength, double learningRate,
+                                         ActivationFunction activationFunction, long seed) {
+        Layer previous = getPreviousLayer();
+        int outputElements = previous == null ? IMAGE_HEIGHT * IMAGE_WIDTH : previous.getOutputElements();
+
+        addLayer(new DenseLayer(outputElements, outLength, learningRate, activationFunction, seed));
+
         return this;
     }
 
     public CnnModelBuilder addSoftMaxLayer(int outLength) {
-            addLayer(new SoftmaxLayer(outLength));
+        addLayer(new SoftmaxLayer(outLength));
 
         return this;
     }
@@ -68,5 +71,12 @@ public class CnnModelBuilder {
             builder.append(layer.toString()).append("\n");
         }
         return builder.toString();
+    }
+
+    private Layer getPreviousLayer() {
+        if (layers.isEmpty()) {
+            return null;
+        }
+        return layers.get(layers.size() - 1);
     }
 }

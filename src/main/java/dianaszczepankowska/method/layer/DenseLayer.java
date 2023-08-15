@@ -80,21 +80,6 @@ public class DenseLayer implements Layer {
     }
 
     @Override
-    public int getOutputLength() {
-        return 0;
-    }
-
-    @Override
-    public int getOutputRows() {
-        return 0;
-    }
-
-    @Override
-    public int getOutputCols() {
-        return 0;
-    }
-
-    @Override
     public int getOutputElements() {
         return outputLength;
     }

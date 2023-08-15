@@ -4,21 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e9165b4-c8d6-4072-a352-ef14ee3fecba" name="Changes" comment="Add softmax, output file and user input handler">
+    <list default="true" id="5e9165b4-c8d6-4072-a352-ef14ee3fecba" name="Changes" comment="refactor">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/activationfunction/ActivationFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/activationfunction/ActivationFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/activationfunction/ReLu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/activationfunction/ReLu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/activationfunction/SoftMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/activationfunction/SoftMax.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/driver/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/driver/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/ConvolutionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/ConvolutionLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/DenseLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/DenseLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/Layer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/PoolingLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/PoolingLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/PoolingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/PoolingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/layer/SoftmaxLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/SoftmaxLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/network/CnnModelBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/network/CnnModelBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/network/CnnNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/network/CnnNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/tools/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/tools/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/activationfunction/SoftMax.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/DenseLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/DenseLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/Layer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/SoftmaxLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/layer/SoftmaxLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/network/CnnModelBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/network/CnnModelBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/network/CnnNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/method/network/CnnNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/problem/ImagePreprocessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dianaszczepankowska/problem/ImagePreprocessor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,19 +46,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "C:/Users/diana/IdeaProjects/cnn",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/diana/IdeaProjects/cnn&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\diana\IdeaProjects\cnn" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\diana\IdeaProjects\cnn\src\main\java\dianaszczepankowska\dataloader" />
       <recent name="C:\Users\diana\IdeaProjects\cnn\src\main\java\dianaszczepankowska\problem\dataloader\mnist_data" />
     </key>
   </component>
@@ -109,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692012469588</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="refactor">
+      <created>1692013849818</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692013849818</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,7 +130,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add softmax, output file and user input handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add softmax, output file and user input handler" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

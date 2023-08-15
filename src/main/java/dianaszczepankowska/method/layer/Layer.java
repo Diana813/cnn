@@ -12,15 +12,22 @@ public interface Layer {
 
     void backPropagation(double[] dLdO);
 
-    int getOutputLength();
-
-    int getOutputRows();
-
-    int getOutputCols();
-
     int getOutputElements();
 
     void setNextLayer(Layer layer);
 
     void setPreviousLayer(Layer layer);
+
+    default int getOutputLength() {
+        return 0;
+    }
+
+    default int getOutputRows() {
+        return 0;
+    }
+
+    default int getOutputCols() {
+        return 0;
+    }
+
 }

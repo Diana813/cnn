@@ -1,24 +1,20 @@
 package dianaszczepankowska.method.layer;
 
-import dianaszczepankowska.method.activationfunction.ActivationFunction;
-import dianaszczepankowska.method.activationfunction.SoftMax;
 import dianaszczepankowska.method.tools.Matrix;
 import java.util.Collections;
 import java.util.List;
 
-public class SoftmaxLayer implements Layer{
+public class SoftmaxLayer implements Layer {
 
     private Layer nextLayer;
     private Layer previousLayer;
     private final int outputLength;
     private double[] output;
 
-    private final ActivationFunction activationFunction;
-
-    public SoftmaxLayer(int outputLength){
+    public SoftmaxLayer(int outputLength) {
         this.outputLength = outputLength;
-        this.activationFunction = new SoftMax();
     }
+
     @Override
     public double[] forwardPropagation(List<double[][]> input) {
         return new double[0];
@@ -26,7 +22,16 @@ public class SoftmaxLayer implements Layer{
 
     @Override
     public double[] forwardPropagation(double[] input) {
-        output = activationFunction.apply(input);
+        output = new double[input.length];
+        double sumExp = 0.0;
+
+        for (double value : input) {
+            sumExp += Math.exp(value);
+        }
+
+        for (int i = 0; i < input.length; i++) {
+            output[i] = Math.exp(input[i]) / sumExp;
+        }
         return nextLayer != null ? nextLayer.forwardPropagation(output) : output;
     }
 
@@ -47,21 +52,6 @@ public class SoftmaxLayer implements Layer{
     }
 
     @Override
-    public int getOutputLength() {
-        return 0;
-    }
-
-    @Override
-    public int getOutputRows() {
-        return 0;
-    }
-
-    @Override
-    public int getOutputCols() {
-        return 0;
-    }
-
-    @Override
     public int getOutputElements() {
         return outputLength;
     }
@@ -78,6 +68,7 @@ public class SoftmaxLayer implements Layer{
 
     @Override
     public String toString() {
-        return super.toString();
+        return "SoftmaxLayer {" +
+                "number of neurons: " + outputLength + '}';
     }
 }

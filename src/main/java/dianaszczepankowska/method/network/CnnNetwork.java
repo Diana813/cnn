@@ -37,13 +37,17 @@ public class CnnNetwork {
         });
     }
 
+    public double[] predictProbabilities(Image images) {
+        return layers.get(0).forwardPropagation(Collections.singletonList(images.pixels()));
+    }
+
     private int classifyImage(Image image) {
         List<double[][]> inputList = new ArrayList<>();
         inputList.add(image.pixels());
 
         double[] out = layers.get(0).forwardPropagation(inputList);
 
-        return oneHot(out);
+        return findIndexOfMaxValue(out);
     }
 
     private void connectLayers() {
@@ -73,14 +77,10 @@ public class CnnNetwork {
         return add(networkOutput, multiply(expected, -1));
     }
 
-    private int oneHot(double[] in) {
+    private int findIndexOfMaxValue(double[] in) {
         return IntStream.range(0, in.length)
                 .reduce((i, j) -> in[i] >= in[j] ? i : j)
                 .orElse(0);
-    }
-
-    public double[] predictProbabilities(Image images) {
-        return layers.get(0).forwardPropagation(Collections.singletonList(images.pixels()));
     }
 
 }
