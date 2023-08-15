@@ -1,20 +1,17 @@
 package dianaszczepankowska.problem;
 
 import dianaszczepankowska.problem.model.Image;
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.RenderingHints;
+import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class ImagePreprocessor {
 
@@ -30,7 +27,8 @@ public class ImagePreprocessor {
     private static Image processImageFromFile(File file) {
         try {
             BufferedImage originalImage = ImageIO.read(file);
-            BufferedImage scaledImage = scaleImage(originalImage);
+            BufferedImage grayScaleImage = convertToGrayScale(originalImage);
+            BufferedImage scaledImage = scaleImage(grayScaleImage);
             byte[] ubyteData = convertImageToUbyte(scaledImage);
             double[][] pixelMatrix = convertToPixelMatrix(ubyteData);
             return ImageFactory.createFromPixelMatrix(pixelMatrix);
@@ -77,41 +75,17 @@ public class ImagePreprocessor {
         return outputStream.toByteArray();
     }
 
+    private static BufferedImage convertToGrayScale(BufferedImage originalImage) {
+        BufferedImage grayScaleImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+        ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+        op.filter(originalImage, grayScaleImage);
+        return grayScaleImage;
+    }
+
     public static class ImageFactory {
         public static Image createFromPixelMatrix(double[][] pixelMatrix) {
             return new Image(pixelMatrix, null);
         }
     }
 
-    public static void displayProcessedImages(List<Image> processedImages) {
-        JFrame frame = new JFrame();
-        frame.setLayout(new GridLayout(1, processedImages.size()));
-
-        for (Image image : processedImages) {
-            BufferedImage bufferedImage = convertToBufferedImage(image.pixels());
-            ImageIcon imageIcon = new ImageIcon(bufferedImage);
-            JLabel label = new JLabel(imageIcon);
-            frame.add(label);
-        }
-
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
-
-    private static BufferedImage convertToBufferedImage(double[][] pixelMatrix) {
-        int height = pixelMatrix.length;
-        int width = pixelMatrix[0].length;
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int grayscaleValue = (int) (pixelMatrix[y][x] * 255);
-                int rgb = new Color(grayscaleValue, grayscaleValue, grayscaleValue).getRGB();
-                image.setRGB(x, y, rgb);
-            }
-        }
-
-        return image;
-    }
 }

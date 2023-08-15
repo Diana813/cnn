@@ -1,10 +1,8 @@
 package dianaszczepankowska;
 
 import dianaszczepankowska.problem.model.Image;
-import dianaszczepankowska.method.activationfunction.ReLu;
 import dianaszczepankowska.problem.Loader;
 import dianaszczepankowska.driver.InputHandler;
-import dianaszczepankowska.method.layer.PoolingType;
 import dianaszczepankowska.method.network.CnnModelBuilder;
 import dianaszczepankowska.method.network.CnnNetwork;
 import java.io.BufferedWriter;
@@ -42,21 +40,15 @@ public class Main {
 
         try {
 
-
-            CnnModelBuilder builder = new CnnModelBuilder()
-                    .addConvolutionLayer(20, 7, 1, 0.25, true, SEED)
-                    .addPoolingLayer(3, 1, PoolingType.MAX)
-                    .addConvolutionLayer(10, 5, 1, 0.25, true, SEED)
-                    .addPoolingLayer(3, 1, PoolingType.MAX)
-                    .addDenseLayer(150, 0.25, new ReLu(), SEED)
-                    .addDenseLayer(10, 0.25, new ReLu(), SEED)
-                    .addSoftMaxLayer(10);
-
-            //builder = inputHandler.getCnnNetworkParams(builder);
-           /// builder.addSoftMaxLayer(10);
+            CnnModelBuilder builder = new CnnModelBuilder();
+            builder = inputHandler.getCnnNetworkParams(builder);
+            System.out.println("Dodano warstwę softmax");
+            builder.addSoftMaxLayer(10);
 
 
             CnnNetwork cnn = builder.build();
+
+            System.out.println("Rozpoczęto trenowanie sieci");
 
             double initialRate = cnn.test(imagesTest);
             fileOut.println("WSPOLCZYNNIK SUKCESU PRZED TRENINGIEM: " + initialRate);
