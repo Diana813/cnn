@@ -15,10 +15,10 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static final String TRAIN_IMAGES_PATH = "src/main/java/dianaszczepankowska/problem/mnistdata/train-images-idx3-ubyte";
-    public static final String TRAIN_LABELS_PATH = "src/main/java/dianaszczepankowska/problem/mnistdata/train-labels-idx1-ubyte";
-    public static final String TEST_IMAGES_PATH = "src/main/java/dianaszczepankowska/problem/mnistdata/t10k-images-idx3-ubyte";
-    public static final String TEST_LABELS_PATH = "src/main/java/dianaszczepankowska/problem/mnistdata/t10k-labels-idx1-ubyte";
+    public static final String TRAIN_IMAGES_PATH = "src/main/resources/mnistdata/train-images-idx3-ubyte";
+    public static final String TRAIN_LABELS_PATH = "src/main/resources/mnistdata/train-labels-idx1-ubyte";
+    public static final String TEST_IMAGES_PATH = "src/main/resources/mnistdata/t10k-images-idx3-ubyte";
+    public static final String TEST_LABELS_PATH = "src/main/resources/mnistdata/t10k-labels-idx1-ubyte";
     public static long SEED = 100;
 
 
@@ -42,17 +42,17 @@ public class Main {
 
             CnnModelBuilder builder = new CnnModelBuilder();
             builder = inputHandler.getCnnNetworkParams(builder);
-            System.out.println("Dodano warstwę softmax");
+            System.out.println("Dodano warstwe softmax");
             builder.addSoftMaxLayer(10);
 
 
             CnnNetwork cnn = builder.build();
 
-            System.out.println("Rozpoczęto trenowanie sieci");
+            System.out.println("Rozpoczeto trenowanie sieci");
 
             double initialRate = cnn.test(imagesTest);
             fileOut.println("WSPOLCZYNNIK SUKCESU PRZED TRENINGIEM: " + initialRate);
-            System.out.println("Współczynnik sukcesu przed treningiem: " + initialRate);
+            System.out.println("Wspolczynnik sukcesu przed treningiem: " + initialRate);
 
             String networkSettings = builder.toString();
             fileOut.println("USTAWIENIA SIECI: " + networkSettings);
@@ -63,7 +63,7 @@ public class Main {
                 shuffle(imagesTrain);
                 cnn.train(imagesTrain);
                 double rate = cnn.test(imagesTest);
-                System.out.println("Współczynnik sukcesu po rundzie " + i + ": " + rate);
+                System.out.println("Wspolczynnik sukcesu po rundzie " + i + ": " + rate);
 
                 fileOut.close();
                 fileOut = new PrintWriter(new BufferedWriter(new FileWriter("results.txt", true)));

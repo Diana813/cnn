@@ -38,20 +38,20 @@ public class InputHandler {
 
     public void getUserInputImage(CnnNetwork cnn) {
         do {
-            System.out.println("Dodaj ścieżkę do zdjęcia do klasyfikacji:");
+            System.out.println("Dodaj sciezkę do zdjęcia do klasyfikacji:");
 
             String imagePath = scanner.nextLine().replace("\"", "");
             Image inputImage = ImagePreprocessor.processImagesFromFiles(List.of(new File(imagePath))).get(0);
 
             double[] predictions = cnn.predictProbabilities(inputImage);
-            System.out.println("Wynik klasyfikacji dla każdej klasy:");
+            System.out.println("Wynik klasyfikacji dla kazdej klasy:");
             for (ClothingCategory category : ClothingCategory.values()) {
                 int classIndex = category.ordinal();
                 System.out.println(category.name() + ": " + (predictions[classIndex] * 100) + "%");
             }
 
-            System.out.println("Jeśli chcesz zakończyć wpisz: q");
-            System.out.println("Jeśli chcesz dodać kolejny obrazek wpisz dowolną literę");
+            System.out.println("Jesli chcesz zakonczyc wpisz: q");
+            System.out.println("Jesli chcesz dodac kolejny obrazek wpisz dowolna litere");
 
         } while (!scanner.nextLine().equals("q"));
     }
@@ -65,7 +65,7 @@ public class InputHandler {
 
         System.out.println("DODAJ WARSTWE SPLOTOWA");
 
-        System.out.println("Podaj liczbę filtrów: ");
+        System.out.println("Podaj liczbe filtrow: ");
         numFilters = scanner.nextInt();
         scanner.nextLine();
 
@@ -73,7 +73,7 @@ public class InputHandler {
         filterSize = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Podaj wielkość kroku: ");
+        System.out.println("Podaj wielkosc kroku: ");
         stepSize = scanner.nextInt();
         scanner.nextLine();
 
@@ -88,10 +88,10 @@ public class InputHandler {
         try {
             builder.addConvolutionLayer(numFilters, filterSize, stepSize, learningRate, padding, SEED);
             addPoolingLayer(builder);
-            System.out.println("Jeśli nie chcesz dodawać więcej warstw splotowych wpisz q");
-            System.out.println("Jeśli chcesz dodać kolejną warstwę wpisz dowolną literę.");
+            System.out.println("Jesli nie chcesz dodawac wiecej warstw splotowych wpisz q");
+            System.out.println("Jesli chcesz dodac kolejna warstwe wpisz dowolna litere.");
         } catch (Exception e) {
-            System.out.println("Parametry nieprawidłowe, nie można dodać warstwy splotowej");
+            System.out.println("Parametry nieprawidlowe, nie mozna dodac warstwy splotowej");
             addConvolutionLayer(builder);
         }
 
@@ -103,12 +103,12 @@ public class InputHandler {
         int poolingStepSize;
         PoolingType type;
 
-        System.out.println("DODAJ POOLING(jeśli nie chcesz dodawać poolingu wpisz q)");
+        System.out.println("DODAJ POOLING(jesli nie chcesz dodawac poolingu wpisz q)");
         System.out.println("Podaj rozmiar filtra: ");
         kernelSize = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Podaj wielkość kroku: ");
+        System.out.println("Podaj wielkosc kroku: ");
         poolingStepSize = scanner.nextInt();
         scanner.nextLine();
 
@@ -122,7 +122,7 @@ public class InputHandler {
         try {
             builder.addPoolingLayer(kernelSize, poolingStepSize, type);
         } catch (Exception e) {
-            System.out.println("Parametry nieprawidłowe, nie można dodać poolingu");
+            System.out.println("Parametry nieprawidlowe, nie mozna dodac poolingu");
             addPoolingLayer(builder);
         }
     }
@@ -131,9 +131,9 @@ public class InputHandler {
 
         int outLength;
         double denseLearningRate;
-        System.out.println("DODAJ WARSTWE GESTA (jeśli to ostatnia z warstw gęstych liczba neuronów musi wynosić 10)");
+        System.out.println("DODAJ WARSTWE GESTA (jesli to ostatnia z warstw gestych liczba neuronow musi wynosic 10)");
 
-        System.out.println("Podaj liczbę neuronów: ");
+        System.out.println("Podaj liczbe neuronow: ");
         outLength = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Podaj learning rate: ");
@@ -143,10 +143,10 @@ public class InputHandler {
         try {
 
             builder.addDenseLayer(outLength, denseLearningRate, new ReLu(), SEED);
-            System.out.println("Jeśli nie chcesz dodawać więcej warstw gęstych wpisz q");
-            System.out.println("Jeśli chcesz dodać kolejną warstwę wpisz dowolną literę.");
+            System.out.println("Jesli nie chcesz dodawas wiecej warstw gestych wpisz q");
+            System.out.println("Jesli chcesz dodas kolejna warstwe wpisz dowolna litere.");
         } catch (Exception e) {
-            System.out.println("Parametry nieprawidłowe, nie można dodać warstwy gęstej");
+            System.out.println("Parametry nieprawidlowe, nie mozna dodac warstwy gestej");
             addDenseLayer(builder);
         }
 
