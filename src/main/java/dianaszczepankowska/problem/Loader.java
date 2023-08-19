@@ -2,10 +2,11 @@ package dianaszczepankowska.problem;
 
 import dianaszczepankowska.problem.model.Image;
 import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -44,7 +45,8 @@ public class Loader {
     }
 
     private static DataInputStream readMnistDataFile(String path, int magicNumber) throws IOException {
-        DataInputStream dataInputStream = new DataInputStream(new FileInputStream(path));
+        InputStream inputStream = Loader.class.getClassLoader().getResourceAsStream(path);
+        DataInputStream dataInputStream = new DataInputStream(Objects.requireNonNull(inputStream));
         int number = dataInputStream.readInt();
         if (number != magicNumber) {
             throw new RuntimeException("Invalid image file format");

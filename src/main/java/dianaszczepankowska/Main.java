@@ -15,10 +15,10 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static final String TRAIN_IMAGES_PATH = "src/main/resources/mnistdata/train-images-idx3-ubyte";
-    public static final String TRAIN_LABELS_PATH = "src/main/resources/mnistdata/train-labels-idx1-ubyte";
-    public static final String TEST_IMAGES_PATH = "src/main/resources/mnistdata/t10k-images-idx3-ubyte";
-    public static final String TEST_LABELS_PATH = "src/main/resources/mnistdata/t10k-labels-idx1-ubyte";
+    public static final String TRAIN_IMAGES_PATH = "mnistdata/train-images-idx3-ubyte.dat";
+    public static final String TRAIN_LABELS_PATH = "mnistdata/train-labels-idx1-ubyte.dat";
+    public static final String TEST_IMAGES_PATH = "mnistdata/t10k-images-idx3-ubyte.dat";
+    public static final String TEST_LABELS_PATH = "mnistdata/t10k-labels-idx1-ubyte.dat";
     public static long SEED = 100;
 
 
@@ -55,7 +55,7 @@ public class Main {
             System.out.println("Wspolczynnik sukcesu przed treningiem: " + initialRate);
 
             String networkSettings = builder.toString();
-            fileOut.println("USTAWIENIA SIECI: " + networkSettings);
+            fileOut.println("USTAWIENIA SIECI: \n" + networkSettings);
 
             int epochs = 5;
 
