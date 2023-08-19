@@ -23,22 +23,20 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-
         PrintWriter fileOut = new PrintWriter(new BufferedWriter(new FileWriter("results.txt", true)));
-        InputHandler inputHandler = new InputHandler(new Scanner(System.in));
+        try (Scanner scanner = new Scanner(System.in)) {
+
+            InputHandler inputHandler = new InputHandler(scanner);
+
+            System.out.println("Pobieranie danych...");
+
+            List<Image> imagesTrain = Loader.loadMnistImages(TRAIN_IMAGES_PATH, TRAIN_LABELS_PATH);
+            List<Image> imagesTest = Loader.loadMnistImages(TEST_IMAGES_PATH, TEST_LABELS_PATH);
 
 
-        System.out.println("Pobieranie danych...");
+            System.out.println("Liczba danych treningowych: " + imagesTrain.size());
+            System.out.println("Liczba danych testowych: " + imagesTest.size());
 
-        List<Image> imagesTrain = Loader.loadMnistImages(TRAIN_IMAGES_PATH, TRAIN_LABELS_PATH);
-        List<Image> imagesTest = Loader.loadMnistImages(TEST_IMAGES_PATH, TEST_LABELS_PATH);
-
-
-        System.out.println("Liczba danych treningowych: " + imagesTrain.size());
-        System.out.println("Liczba danych testowych: " + imagesTest.size());
-
-
-        try {
 
             CnnModelBuilder builder = new CnnModelBuilder();
             builder = inputHandler.getCnnNetworkParams(builder);

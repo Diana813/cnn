@@ -60,7 +60,6 @@ public class InputHandler {
             System.out.println("Jesli chcesz dodac kolejny obrazek wpisz dowolna litere");
         }
 
-        scanner.close();
     }
 
     private void addConvolutionLayer(CnnModelBuilder builder) {
@@ -146,7 +145,7 @@ public class InputHandler {
         System.out.println("DODAJ WARSTWE GESTA (w ostatniej warstwie gestej liczba neuronow musi wynosic 10)");
 
         try {
-            System.out.println("Czy to ostatnia warstwa gęsta? (T/N)");
+            System.out.println("Czy to ostatnia warstwa gesta? (T/N)");
             String isLastLayerAnswer = scanner.nextLine();
             isLastDenseLayer = isLastLayerAnswer.equalsIgnoreCase("T");
 
